@@ -5,13 +5,13 @@ var Schema = mongoose.Schema;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback() {
 	var personSchema = new Schema({
-	firstName: String,
-	lastName: String,
-	email: String,
-	customNeeds : Array,
-	customFeelings: Array,
-	customObservations: Array,
-	customChoices: Array
+	firstName: { type: String, default: ''},
+	lastName: {type: String, default: ''},
+	email: {type: String, default: ''},
+	customNeeds : {type: Array, default: []},
+	customFeelings: {type: Array, default: []},
+	customObservations: {type: Array, default: []},
+	customChoices: {type: Array, default: []}
 });
 	var Person = mongoose.model('Person', personSchema);
 	var alex = new Person({firstName: "Alexander", lastName: "Miranda", email: "amiranda@umich.edu", customNeeds: [], customFeelings: [], customObservations: [], customChoice: []})
