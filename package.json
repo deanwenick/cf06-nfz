@@ -1,0 +1,24 @@
+{
+  "name": "nfz",
+  "version": "0.0.0",
+  "description": "",
+  "main": "mongooseSchema_person.js",
+  "dependencies": {
+    "express": "~3.4.6",
+    "mongoose": "~3.8.1",
+    "path": "~0.4.9"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/deanwenick/nfz.git"
+  },
+  "author": "",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/deanwenick/nfz/issues"
+  }
+}
