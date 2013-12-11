@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>serializeArray demo</title>
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="container">
+    <!--<a href="http://lipis.github.io/bootstrap-social/" target="_blank">lipis.github.io/bootstrap-social/</a>-->
+
+  <div class="row">
+    <div class="col-sm-4 social-buttons">
+      <h3>Login to the No Fault Zone</h3>
+
+      <a class="btn btn-block btn-social btn-facebook">
+        <i class="fa fa-facebook"></i> Sign in with Facebook
+      </a>
+
+      <a class="btn btn-block btn-social btn-google-plus">
+        <i class="fa fa-google-plus"></i> Sign in with Google
+      </a>
+
+      <a class="btn btn-block btn-social btn-twitter">
+        <i class="fa fa-twitter"></i> Sign in with Twitter
+      </a>
+
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<script>
+
+  function showValues() {
+    var fields = $( ":input" ).serializeArray();
+    var nfzObject = {choices: fields};
+    console.dir(nfzObject)
+//  $( ":checkbox, :radio" ).click( showValues );
+//  $( "select" ).change( showValues );
+  }
+
+  $( "input[type='submit'], button[type='submit']" ).click( showValues );
+
+  showValues();
+</script>
+
+  <script>
+  $(function () {
+    var all_classes = "";
+    var timer = undefined;
+    $.each($('li', '.social-class'), function (index, element) {
+      all_classes += " btn-" + $(element).data("code");
+    });
+    $('li', '.social-class').mouseenter(function () {
+      var icon_name = $(this).data("code");
+      if ($(this).data("icon")) {
+        icon_name = $(this).data("icon");
+      }
+      var icon = "<i class='fa fa-" + icon_name + "'></i>";
+      $('.btn-social', '.social-sizes').html(icon + "Sign in with " + $(this).data("name"));
+      $('.btn-social-icon', '.social-sizes').html(icon);
+      $('.btn', '.social-sizes').removeClass(all_classes);
+      $('.btn', '.social-sizes').addClass("btn-" + $(this).data('code'));
+    });
+    $($('li', '.social-class')[Math.floor($('li', '.social-class').length * Math.random())]).mouseenter();
+  });
+
+
+</script>
+</body>
+</html>
