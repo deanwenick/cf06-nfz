@@ -1,0 +1,22 @@
+{
+  "name": "nfz",
+  "version": "0.0.1",
+  "homepage": "https://github.com/deanwenick/nfz",
+  "authors": [
+    "deanwenick <deanwenick@gmail.com>"
+  ],
+  "description": "an exercise in sockets",
+  "main": "app.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.0.3",
+    "bootstrap": "~3.0.3"
+  }
+}
