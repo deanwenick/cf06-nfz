@@ -5,6 +5,7 @@
   <title>serializeArray demo</title>
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.1.2/handlebars.min.js"></script>
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
   <!-- Optional theme -->
@@ -14,9 +15,25 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div>
+  <script>
+
+  </script>
+  <script id="selected-cards-template" type="text/x-handlebars-template">
+    <div>Your partner selected these cards:</div>
+    <ul class="nav nav-pills nav-stacked">
+    {{#each cards}}
+      {{#if value}}
+      <li class="list-group-item"> {{value}}</li>
+      {{/if}}
+    {{/each}}
+      </ul>
+  </script>
+
+
   <!--<form name="myWebForm" action="mailto:youremail@email.com" method="post">-->
-  <div class="col-md-3">
+  <div class="container">
+  <div class="row">
+    <div class="col-md-3">
     <div class="panel panel-primary">
       <div class="panel-heading">
         <span class="icon icon-tea-kettle"></span>Choice Cards
@@ -167,22 +184,80 @@
       </div>
     </div>
     <button type="submit" class="btn btn-default">Submit</button>
-    <!--</form>-->
   </div>
-</div>
+  </div>
+
+    <!--</form>-->
+
+<div id="cardsObject"></div>
+<footer  class="clearfix" id="cardsSelected"></footer>
+
 <script>
+//  var selectedCards = {
+//    cards: [{
+//      name: "choice",
+//      value: "choice listen to thoughts about me"
+//    }, {
+//      name: "choice",
+//      value: ""
+//    }, {
+//      name: "feeling",
+//      value: "feeling Uneasy"
+//    }, {
+//      name: "need",
+//      value: "need Friends"
+//    }, {
+//      name: "need",
+//      value: "need To be heard"
+//    }]
+//  };
   function showValues() {
     var fields = $( ":input" ).serializeArray();
     var nfzObject = {cards: fields};
-    console.dir(nfzObject)
+    console.dir(nfzObject);
+//    $('#cardsObject').html( print(nfzObject) );
+
+
+    var context = nfzObject;
+    console.log (context);
+    var source = $("#selected-cards-template")
+        .html();
+    console.log("source", source);
+    var templateDetail = Handlebars.compile(source);
+    console.log(templateDetail);
+    var htmlDetail = templateDetail(context);
+    console.log(htmlDetail);
+    $('#cardsSelected').html(htmlDetail);
+
+
+
     return nfzObject;
     //  $( ":checkbox, :radio" ).click( showValues );
     //  $( "select" ).change( showValues );
   }
 
-  $( "input[type='submit'], button[type='submit']" ).click(  showValues );
+  $( "input[type='submit'], button[type='submit']" ).click(showValues);
 
   //showValues();
+
+
+//  var print = function(object){
+//    var str='';
+//
+//    for(var p in object){
+//      if(typeof object[p] == 'string'){
+//        str+= p + ': \"' + object[p]+'\"; </br>';
+//      }else{
+//        str+= p + ': { </br>' + print(object[p]) + '}';
+//      }
+//    }
+//
+//    return str;
+//  };
+
+
+
+
 </script>
 </body>
 </html>
