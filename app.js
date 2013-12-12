@@ -91,6 +91,7 @@ ioServer.on("connection", function(clientSocket){
 
 });
 
-httpServer.listen(8000);
+var port = process.env.PORT || 8000;
+httpServer.listen(port);
 //expressApp.listen(8000);
-console.log("Started teamedit on port 8000");
+console.log("Started NFZ on port 8000");

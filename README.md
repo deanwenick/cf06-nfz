@@ -1,3 +1,14 @@
+12/9 divided tasks
+    Zoie - set up socket io and express, underscore, etc.
+    Alex - configure mongo db, investigate user auth with passport js
+    Dean - working on UI, input and output
+    Margie - work with Dean?
+    All - keep checking in with each other about progress
+    
+    
+# below from card deck which may help as starter
+
+
 CSS Playing Cards
 =================
 
