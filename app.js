@@ -37,6 +37,18 @@ app.post('/', function(req, res){
 	return res.send(person);
 });
 
+app.delete('/', function(req, res) {
+	return a.Person.remove(function(err) {
+		if (!err) {
+			console.log("removed");
+			return res.send('');
+		}
+		else {
+			console.log(err);
+		}
+	})
+	});
+
 
 var port = process.env.PORT || 3000;
 app.listen(port);
