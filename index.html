@@ -219,14 +219,14 @@
 
 
     var context = nfzObject;
-    console.log (context);
+//    console.log (context);
     var source = $("#selected-cards-template")
         .html();
-    console.log("source", source);
+//    console.log("source", source);
     var templateDetail = Handlebars.compile(source);
-    console.log(templateDetail);
+//    console.log(templateDetail);
     var htmlDetail = templateDetail(context);
-    console.log(htmlDetail);
+//    console.log(htmlDetail);
     $('#cardsSelected').html(htmlDetail);
 
 
