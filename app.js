@@ -8,6 +8,8 @@ var path = require("path"),
     fs = require('fs');
 
 
+var app = express()
+    .use(express.static(path.join(__dirname,"cardtext")));
 
 // The server holds the contents of various open files in this
 // global object.
@@ -38,6 +40,10 @@ expressApp.get("/", function(req, res) {
     res.redirect("/untitled");
     //res.redirect("editor");
     //res.redirect("http://bbc.co.uk");
+});
+
+expressApp.get("/template", function(req, res) {
+    res.sendfile("./cardtext/handlebars.js");
 });
 
 expressApp.get("/:filename", function(req, res) {

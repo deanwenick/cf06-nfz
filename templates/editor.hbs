@@ -4,32 +4,32 @@
         <title>NFZ Group Chat</title>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
         <!--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
-        <!--<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>-->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.1.2/handlebars.min.js"></script>
-        <!--<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>-->
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 
         <!-- https://code.google.com/p/google-diff-match-patch/ -->
         <script src="//cdnjs.cloudflare.com/ajax/libs/diff_match_patch/20121119/diff_match_patch.js"></script>
 
         <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js"></script>
 
-        <!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">-->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
         <!-- Optional theme -->
-        <!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">-->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
     </head>
 
     <body>
         <script id="selected-cards-template" type="text/x-handlebars-template">
-            <div>Your partner selected these cards:</div>
-            <ul class="nav nav-pills nav-stacked">
+          <div>Your partner selected these cards:</div>
+          <ul class="nav nav-pills nav-stacked">
+            \{{#each cards}}
+              \{{#if value}}
+                <li class="list-group-item"> \{{value}}</li>
+              \{{/if}}
+            \{{/each}}
+          </ul>
 
-            {{#each context.cards}}
-              {{#if value}}
-              <li class="list-group-item"> {{value}}</li>
-              <li>ffge</li>
-              {{/if}}
-            {{/each}}
-            </ul>
+
         </script>
         <form>
             <label for="filename">File Name</label>
@@ -328,15 +328,15 @@
             //    $('#cardsObject').html( print(nfzObject) );
 
 
-                var context = window.context = nfzObject;
+                var context = nfzObject;
                 console.log (context);
                 var source = $("#selected-cards-template")
                     .html();
                 console.log("source", source);
-                var templateDetail = Handlebars.template(source);
-                console.log(templateDetail);
+                var templateDetail = Handlebars.compile(source);
+                console.log("templateDetail", templateDetail);
                 var htmlDetail = templateDetail(context);
-                console.log(htmlDetail);
+                console.log("htmlDetail", htmlDetail);
                 $('#cardsSelected').html(htmlDetail);
 
 
