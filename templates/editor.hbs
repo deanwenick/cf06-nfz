@@ -1,24 +1,208 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>A Group Text Editor</title>
+        <title>NFZ Group Chat</title>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <!--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
+        <!--<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>-->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.1.2/handlebars.min.js"></script>
+        <!--<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>-->
 
         <!-- https://code.google.com/p/google-diff-match-patch/ -->
         <script src="//cdnjs.cloudflare.com/ajax/libs/diff_match_patch/20121119/diff_match_patch.js"></script>
 
         <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js"></script>
+
+        <!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">-->
+        <!-- Optional theme -->
+        <!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">-->
     </head>
 
     <body>
+        <script id="selected-cards-template" type="text/x-handlebars-template">
+            <div>Your partner selected these cards:</div>
+            <ul class="nav nav-pills nav-stacked">
+
+            {{#each context.cards}}
+              {{#if value}}
+              <li class="list-group-item"> {{value}}</li>
+              <li>ffge</li>
+              {{/if}}
+            {{/each}}
+            </ul>
+        </script>
         <form>
             <label for="filename">File Name</label>
             <input type="text" name="filename" value="{{filename}}">
             <br/>
             <textarea name="content" rows="24" cols="80"></textarea>
             <br/>
-            <input type="button" name="save" value="Save File">
+            <input type="text" class="form-control" name="userchat" placeholder="type type">
+            <input type="button" name="save" value="Sent">
         </form>
+        <div class="container">
+        <div class="row">
+        <div class="col-md-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <span class="icon icon-tea-kettle"></span>Choice Cards
+                </div>
+                <div class="panel-body">
+
+                    <ul class="list-group">
+                      <li class="list-group-item">
+                        <input type="checkbox" name="choice" value="choice listen to thoughts about you"  /> Listen to      thoughts about YOU:
+                      </li>
+                      <li class="list-group-item">
+                        <input type="checkbox" name="choice" value="choice listen to thoughts about me"  /> Listen to thoughts      about ME:
+                      </li>
+                      <li class="list-group-item">
+                        <input type="checkbox" name="choice" value="choice tell my story"  /> Tell my Story
+                      </li>
+                      <li class="list-group-item">
+                        <input type="checkbox" name="choice" value="choice problem solve"  /> Problem Solve
+                      </li>
+                      <li class="list-group-item">
+                        <input type="checkbox" name="choice" value="choice blame"  /> Blame
+                      </li>
+                      <li class="list-group-item">
+                        <input type="checkbox" name="choice" value="choice demand"  /> Demand
+                      </li>
+                      <li class="list-group-item">
+                        <input type="checkbox" name="choice" value="choice complain"  /> Complain
+                      </li>
+                      <li class="list-group-item">
+                        <input type="checkbox" name="choice" value="choice defuse anger"  /> D.E.F.U.S.E My Anger
+                      </li>
+                      <li class="list-group-item">
+                        <input type="text" name="choice" placeholder="Enter your own choice"  />
+                      </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+  <div class="col-md-3">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <span class="icon icon-tea-kettle"></span>Feeling Cards
+      </div>
+      <div class="panel-body">
+        <ul class="list-group">
+        <li class="list-group-item">
+          <input type="checkbox" name="feeling" value="feeling Eager"  /> Eager
+        </li>
+        <li class="list-group-item">
+          <input type="checkbox" name="feeling" value="feeling Uneasy"  /> Uneasy
+        </li>
+        <li class="list-group-item">
+          <input type="checkbox" name="feeling" value="feeling Curious"  /> Curious
+        </li>
+        <li class="list-group-item">
+          <input type="checkbox" name="feeling" value="feeling Impatient"  /> Impatient
+        </li>
+        <li class="list-group-item">
+          <input type="checkbox" name="feeling" value="feeling Angry"  /> Angry
+        </li>
+        <li class="list-group-item">
+          <input type="checkbox" name="feeling" value="feeling Confident"  /> Confident
+        </li>
+        <li class="list-group-item">
+          <input type="checkbox" name="feeling" value="feeling Satisfied"  /> Satisfied
+        </li>
+        <li class="list-group-item">
+          <input type="checkbox" name="feeling" value="feeling Tender"  /> Tender
+        </li>
+        <li class="list-group-item">
+          <input type="checkbox" name="feeling" value="feeling Tired"  /> Tired
+        </li>
+        <li class="list-group-item">
+          <input type="checkbox" name="feeling" value="feeling Delighted"  /> Delighted
+        </li>
+        <li class="list-group-item">
+          <input type="checkbox" name="feeling" value="feeling Rejuvenated"  /> Rejuvenated
+        </li>
+        <li class="list-group-item">
+          <input type="checkbox" name="feeling" value="feeling Excited"  /> Excited
+        </li>
+        <li class="list-group-item">
+          <input type="checkbox" name="feeling" value="feeling Grateful"  /> Grateful
+        </li>
+        <li class="list-group-item">
+          <input type="checkbox" name="feeling" value="feeling Joyful"  /> Joyful
+        </li>
+        <li class="list-group-item">
+          <input type="checkbox" name="choice" value="feeling Torn"  /> Torn
+        </li>
+        </ul>
+      </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <span class="icon icon-tea-kettle"></span>Need Cards
+        </div>
+        <div class="panel-body">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <input type="checkbox" name="need" value="need Love"  /> Love
+            </li>
+            <li class="list-group-item">
+              <input type="checkbox" name="need" value="need Friends"  /> Friends
+            </li>
+            <li class="list-group-item">
+              <input type="checkbox" name="choice" value="need Purpose"  /> Purpose
+            </li>
+            <li class="list-group-item">
+              <input type="checkbox" name="need" value="need To matter"  /> To matter
+            </li>
+            <li class="list-group-item">
+              <input type="checkbox" name="need" value="need To be heard"  /> To be heard
+            </li>
+            <li class="list-group-item">
+              <input type="checkbox" name="need" value="need Understanding"  /> Understanding
+            </li>
+            <li class="list-group-item">
+              <input type="checkbox" name="need" value="need Equality"  /> Equality
+            </li>
+            <li class="list-group-item">
+              <input type="checkbox" name="need" value="need Harmony"  /> Harmony
+            </li>
+            <li class="list-group-item">
+              <input type="checkbox" name="need" value="need Connection"  /> Connection
+            </li>
+            <li class="list-group-item">
+              <input type="checkbox" name="need" value="need Warmth"  /> Warmth
+            </li>
+            <li class="list-group-item">
+              <input type="checkbox" name="need" value="need Consideration"  /> Consideration
+            </li>
+            <li class="list-group-item">
+              <input type="checkbox" name="need" value="need Integrity"  /> Integrity
+            </li>
+            <li class="list-group-item">
+              <input type="checkbox" name="need" value="need Acknowledgement"  /> Acknowledgement
+            </li>
+            <li class="list-group-item">
+              <input type="checkbox" name="need" value="need Clarity"  /> Clarity
+            </li>
+            <li class="list-group-item">
+              <input type="checkbox" name="need" value="need Belonging"  /> Belonging
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+    <!--</form>-->
+  </div>
+  </div>
+  </div>
+  <div id="cardsObject">
+  </div>
+  <footer  class="clearfix" id="cardsSelected">
+
+  </footer>
 
         <script>
             var dmp = new diff_match_patch();
@@ -67,8 +251,12 @@
             }
 
 
-            function getFileContent() {
+            function getTextContent() {
                 return $("[name='content']").val();
+            }
+
+            function getUserSpeech(){
+                return $("[name='userchat']").val();
             }
 
 
@@ -79,6 +267,10 @@
             var serverText = "{{content}}";
             var serverSocket = io.connect('http://localhost'); //for developemnt
             //var serverSocket = io.connect('/'); //for production
+            var client_guid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+                return v.toString(16);
+            });
 
 
             /*
@@ -87,20 +279,26 @@
             $("[name='save']").on("click", function() {
                 //var clientText = $("[name='content']").val(),
                 var fileName = getFileName(),
-                    fileContent = getFileContent(),
-                    patch = generatePatch(serverText, fileContent);
+                    textContent = getTextContent();
+                var userSpeech = getUserSpeech();
+                var userText = "\n" + client_guid + " :" + "\n" + userSpeech;
+                textContent += userText;
+                console.log("test");
+                console.log(textContent);
 
+                var patch = generatePatch(serverText, textContent);
+                //console.log(client_guid);
                 console.log(patch); // TODO: send this to the server instead
                 //serverSocket.emit("save", {p: patch});
-                serverSocket.emit("save", {name: fileName, patch: patch});
+                serverSocket.emit("sendMessage", {name: fileName, patch: patch});
 
                 // update the URL without posting
                 history.pushState({name: fileName}, fileName, fileName);
-
-                serverText = fileContent;
+                $("[name='content']").val(textContent);
+                serverText = textContent;
             });
 
-            serverSocket.on("save", function(fileData){
+            serverSocket.on("sendMessage", function(fileData){
                 //var clientText = $("[name='content']").val(),
                     //patch = generatePatch(serverText, clientText);
                 //socket.emit("save", {p: patch});
@@ -109,7 +307,8 @@
                 //console.dir(data);
                 if (getFileName() == fileData.name){
                     console.log("----- Incoming changes from server -----");
-                    serverText = applyPatch(fileData.patch, getFileContent());
+                    console.log(fileData.patch);
+                    serverText = applyPatch(fileData.patch, getTextContent());
                     $("[name='content']").val(serverText);
                 }
                 //$("[name='content']").val(newText);
@@ -119,6 +318,38 @@
             $("[name='filename']").keypress(function(){
                 //console.log(this.value);
             });
+
+
+            function showValues() {
+                var fields = $( ":input" ).serializeArray();
+                var nfzObject = {cards: fields};
+                console.dir(nfzObject);
+            //    $('#cardsObject').html( print(nfzObject) );
+
+
+                var context = window.context = nfzObject;
+                console.log (context);
+                var source = $("#selected-cards-template")
+                    .html();
+                console.log("source", source);
+                var templateDetail = Handlebars.template(source);
+                console.log(templateDetail);
+                var htmlDetail = templateDetail(context);
+                console.log(htmlDetail);
+                $('#cardsSelected').html(htmlDetail);
+
+
+
+                return nfzObject;
+                //  $( ":checkbox, :radio" ).click( showValues );
+                //  $( "select" ).change( showValues );
+            }
+
+            $( "input[type='submit'], button[type='submit']" ).click(  showValues );
+
+          //showValues();
+
         </script>
+
     </body>
 </html>

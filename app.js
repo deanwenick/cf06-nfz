@@ -81,10 +81,10 @@ var httpServer = http.createServer(expressApp),
     ioServer = socketIO.listen(httpServer);
 
 // Listen for socket.io events
-ioServer.on("connection", function(clientSocket){
-    clientSocket.on("save", function(fileData){
+    ioServer.on("connection", function(clientSocket){
+        clientSocket.on("sendMessage", function(fileData){
         fileContent[fileData.name] = applyPatch(fileData.patch, fileContent[fileData.name]);
-        clientSocket.broadcast.emit("save", fileData);
+        clientSocket.broadcast.emit("sendMessage", fileData);
         //console.log(arguments);
 
     });
