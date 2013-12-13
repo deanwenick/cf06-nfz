@@ -259,14 +259,18 @@
                 return $("[name='userchat']").val();
             }
 
+            function clearUserSpeech(){
+              $("[name='userchat']").val("");
+            }
+
 
             /*
              * This variable holds the value of the file as it was defined
              * on the server.
              */
             var serverText = "{{content}}";
-            var serverSocket = io.connect('http://localhost'); //for developemnt
-            //var serverSocket = io.connect('/'); //for production
+            //var serverSocket = io.connect('http://localhost'); //for developemnt
+            var serverSocket = io.connect('/');
             var client_guid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
                 var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
                 return v.toString(16);
@@ -276,8 +280,11 @@
             /*
              * Event handler for the save button
              */
-            $("[name='save']").on("click", function() {
+            $("[name='userchat']").keypress(function(event) {
                 //var clientText = $("[name='content']").val(),
+                if (event.which != 13)
+                  return;
+
                 var fileName = getFileName(),
                     textContent = getTextContent();
                 var userSpeech = getUserSpeech();
@@ -296,6 +303,7 @@
                 history.pushState({name: fileName}, fileName, fileName);
                 $("[name='content']").val(textContent);
                 serverText = textContent;
+                clearUserSpeech();
             });
 
             serverSocket.on("sendMessage", function(fileData){
