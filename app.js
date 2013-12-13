@@ -38,6 +38,10 @@ app.post('/', function(req, res){
 	return res.send(person);
 });
 
+app.put('/', function(req, res){
+	
+})
+
 app.delete('/', function(req, res) {
 	console.log(req.body);
 	return a.Person.findOne({userName: req.body.userName}, function(err, person) {
