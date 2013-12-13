@@ -21,6 +21,7 @@ app.post('/', function(req, res){
 	console.log("POST: ");
 	console.log(req.body);
 	var person = new a.Person({
+		userName: req.body.userName,
 		firstName: req.body.firstName,
 		lastName: req.body.lastName,
 		email: req.body.email,
@@ -38,7 +39,9 @@ app.post('/', function(req, res){
 });
 
 app.delete('/', function(req, res) {
-	return a.Person.remove(function(err) {
+	console.log(req.body);
+	return a.Person.findOne({userName: req.body.userName}, function(err, person) {
+		return person.remove(function(err) {
 		if (!err) {
 			console.log("removed");
 			return res.send('');
@@ -48,6 +51,7 @@ app.delete('/', function(req, res) {
 		}
 	})
 	});
+});
 
 
 var port = process.env.PORT || 3000;

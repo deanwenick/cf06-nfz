@@ -3,6 +3,7 @@ $(document).ready(function(){
 		event.preventDefault();
 		console.log("you suck!");
 		jQuery.post('/', {
+			userName: $('#userName').val(),
 			firstName: $('#firstName').val(),
 			lastName: $('#lastName').val(),
 			email: $('#email').val()
@@ -25,7 +26,13 @@ $(document).ready(function(){
 			},
 			error: function(){
 				console.log("not working");
-			}
+			},
+			data: {
+			userName: $('#userName').val(),
+			firstName: $('#firstName').val(),
+			lastName: $('#lastName').val(),
+			email: $('#email').val()
+		}
 
 		});
 	});

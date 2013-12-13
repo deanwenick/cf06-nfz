@@ -4,6 +4,7 @@ var Schema = mongoose.Schema;
 var personSchema = new Schema({
 	firstName: { type: String, default: ''},
 	lastName: {type: String, default: ''},
+	userName: {type: String, unique: true},
 	email: {type: String, unique: true, default: ''},
 	customNeeds : {type: Array, default: []},
 	customFeelings: {type: Array, default: []},
@@ -17,10 +18,10 @@ mongoose.connect('mongodb://localhost/test');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function callback() {
-	var alex = new Person({firstName: "Alexander", lastName: "Miranda", email: "amiranda@umich.edu", customNeeds: [], customFeelings: [], customObservations: [], customChoice: []})
-	alex.save(function(err, alex) {
+	var alex = new Person({firstName: "Alexander", lastName: "Miranda", userName: "amiranda", email: "amiranda@umich.edu", customNeeds: [], customFeelings: [], customObservations: [], customChoice: []})
+	alex.save(function(err, b) {
 		if(err){
-			console.log("Error saving person instance " + alex.firstName + " " + alex.lastName);
+			console.log(err);
 		}
 		else {
 			Person.find(function(err, people){
