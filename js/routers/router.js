@@ -4,7 +4,7 @@
 
 APP.Router = Backbone.Router.extend({
     routes: {
-        ""          : "showBoard"
+        "board"          : "showBoard"
     },
 
     //get object passed by app.js

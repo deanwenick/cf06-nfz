@@ -30,7 +30,7 @@ var db = [
     }
 ];
 
-app.get("/", function(req, res) {
+app.get("/board", function(req, res) {
     res.send(db);
     console.log("index here");
 });

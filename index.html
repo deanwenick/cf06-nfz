@@ -3,64 +3,62 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-        <style type="text/css">
-            body {
-                padding-top: 120px;
-            }
-            nav {
-                background-color: #ffffff;
-            }
-            #chat {
-                padding-top: 1em
-            }
-            .navbar {
-                margin-bottom: 0;
-            }
-            .clear {
-                clear: both;
-            }
-        </style>
-    </head>
-    <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">Well hello! Fancy meeting you here. You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <style type="text/css">
+        body {
+            padding-top: 120px;
+        }
+        nav {
+            background-color: #ffffff;
+        }
+        #chat {
+            padding-top: 1em
+        }
+        .navbar {
+            margin-bottom: 0;
+        }
+        .clear {
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <!--[if lt IE 7]>
+        <p class="browsehappy">Well hello! Fancy meeting you here. You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
 
-        <header class="container">
-            <nav class="navbar navbar-fixed-top container" role="navigation">
-                <div class="navbar-header">
-                    <a class="navbar-brand">NFZ</a>
-                    <p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">Compassionate Person</a></p>
+    <header class="container">
+        <nav class="navbar navbar-fixed-top container" role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand">NFZ</a>
+                <p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">Compassionate Person</a></p>
 
-                </div>
-                <div class="well clear">temperature scale goes here</div>
-            </nav>
-        </header>
-        <section id=chat class=container>
-            <form>
-                <label for="filename">File Name</label>
-                <input type="text" name="filename" value="{{filename}}">
-                <br/>
-                <textarea name="content" rows="2" cols="80"></textarea>
-                <br/>
-                <input type="text" class="form-control" name="userchat" placeholder="say something">
-                <input type="button" name="save" value="Send">
-            </form>
-        </section>
+            </div>
+            <div class="well clear">temperature scale goes here</div>
+        </nav>
+    </header>
 
-<section id="guts" class="container">
+    <section id=chat class=container>
+        <form>
+            <label for="filename">File Name</label>
+            <input type="text" name="filename" value="{{filename}}">
+            <br/>
+            <textarea name="content" rows="2" cols="80"></textarea>
+            <br/>
+            <input type="text" class="form-control" name="userchat" placeholder="say something">
+            <input type="button" name="save" value="Send">
+        </form>
+    </section>
 
-</section>
-
-
+<section id="guts" class="container"></section>
+<button type=button name=advanceButton id=advanceButton>Identify your choices at this moment</button>
 
 
 
@@ -73,16 +71,18 @@
 
 
 
-        <script src="bower_components/jquery/jquery.min.js"></script>
-        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="bower_components/underscore/underscore-min.js"></script>
-        <script src="bower_components/backbone/backbone-min.js"></script>
-        <script src="bower_components/handlebars/handlebars.min.js"></script>
-        <!-- make sure to include APP components, in order -->
-        <script src="js/main.js"></script>
-        <script src="js/models/mBoard.js"></script>
-        <script src="js/views/vBoard.js"></script>
-        <script src="js/routers/router.js"></script>
 
-    </body>
+
+    <script src="bower_components/jquery/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/underscore/underscore-min.js"></script>
+    <script src="bower_components/backbone/backbone-min.js"></script>
+    <script src="bower_components/handlebars/handlebars.min.js"></script>
+    <!-- make sure to include APP components, in order -->
+    <script src="js/main.js"></script>
+    <script src="js/models/mBoard.js"></script>
+    <script src="js/views/vBoard.js"></script>
+    <script src="js/routers/router.js"></script>
+
+</body>
 </html>
