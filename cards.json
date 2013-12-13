@@ -101,6 +101,6 @@
 		{"label": "Belonging, Inclusion", "type": "Needs", "color": "yellow"},
 		{"label": "Help, Support", "type": "Needs", "color": "yellow"},
 		{"label": "Honesty", "type": "Needs", "color": "yellow"},
-		{"label": "Closure", "type": "Needs", "color": "yellow"},
+		{"label": "Closure", "type": "Needs", "color": "yellow"}
 	]
 }

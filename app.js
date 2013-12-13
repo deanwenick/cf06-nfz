@@ -2,7 +2,8 @@ var mongoose = require('mongoose'),
 	express = require('express'),
 	path = require('path'),
 	_ = require('underscore'),
-	a = require('./public/person'); 
+	a = require('./public/person');
+	b = require('./public/card');
 
 var app = express();
 
@@ -14,7 +15,9 @@ app.configure(function(){
 	app.use(express.static(path.join(__dirname, "bower_components")));
 });
 app.get('/', function(req, res){
-	res.render('index.html');
+	//res.render('index.html');
+	res.render('b.card_data');
+	console.log(b.card_data);
 });
 
 app.post('/', function(req, res){
