@@ -9,14 +9,11 @@ APP.Router = Backbone.Router.extend({
 
     //get object passed by app.js
     showBoard: function() {
-        console.log("you're on the board");
 
         APP.board = new APP.Board();
-        //var board = new APP.Board();
 
 
         APP.boardView = new APP.BoardView({model: APP.board});
-        //APP.boardView.render();
         
     },//end showBoard
 

@@ -18,6 +18,9 @@
             nav {
                 background-color: #ffffff;
             }
+            #chat {
+                padding-top: 1em
+            }
             .navbar {
                 margin-bottom: 0;
             }
@@ -41,6 +44,17 @@
                 <div class="well clear">temperature scale goes here</div>
             </nav>
         </header>
+        <section id=chat class=container>
+            <form>
+                <label for="filename">File Name</label>
+                <input type="text" name="filename" value="{{filename}}">
+                <br/>
+                <textarea name="content" rows="2" cols="80"></textarea>
+                <br/>
+                <input type="text" class="form-control" name="userchat" placeholder="say something">
+                <input type="button" name="save" value="Sent">
+            </form>
+        </section>
 
 <section id="guts" class="container">
 
