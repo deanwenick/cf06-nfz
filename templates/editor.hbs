@@ -40,7 +40,7 @@
             <input type="text" class="form-control" name="userchat" placeholder="type type">
             <input type="button" name="save" value="Sent">
         </form>
-        <div class="container">
+        <div id="cards-container" class="container">
         <div class="row">
         <div class="col-md-3">
             <div class="panel panel-primary">
@@ -131,7 +131,7 @@
           <input type="checkbox" name="feeling" value="feeling Joyful"  /> Joyful
         </li>
         <li class="list-group-item">
-          <input type="checkbox" name="choice" value="feeling Torn"  /> Torn
+          <input type="checkbox" name="feeling" value="feeling Torn"  /> Torn
         </li>
         </ul>
       </div>
@@ -151,7 +151,7 @@
               <input type="checkbox" name="need" value="need Friends"  /> Friends
             </li>
             <li class="list-group-item">
-              <input type="checkbox" name="choice" value="need Purpose"  /> Purpose
+              <input type="checkbox" name="need" value="need Purpose"  /> Purpose
             </li>
             <li class="list-group-item">
               <input type="checkbox" name="need" value="need To matter"  /> To matter
@@ -193,7 +193,7 @@
         </div>
       </div>
     </div>
-    <button type="submit" class="btn btn-default">Submit</button>
+    <button type="submit" name="sendcards" class="btn btn-default">Submit</button>
     <!--</form>-->
   </div>
   </div>
@@ -315,8 +315,51 @@
                 //serverText = newText;
             });
 
-            $("[name='filename']").keypress(function(){
-                //console.log(this.value);
+            $("[name='sendcards']").on("click", function(){
+                var fileName = getFileName();
+                var textContent = getTextContent();
+                var fields = $( "#cards-container :input" ).serializeArray();
+                var inputObject = {cards: fields};
+                var userText = "\n" + client_guid + " sent cards:" + "\n";
+                var userCardText = "";
+                for (var i=0; i<inputObject.cards.length; i++){
+                    if (inputObject.cards[i].name == "choice"){
+                        userCardText = userCardText + "\n" + "choice: " + inputObject.cards[i].value;
+
+                    }else if(inputObject.cards[i].name == "need"){
+                        userCardText = userCardText + "\n" + "need: " + inputObject.cards[i].value;
+
+                    }else if(inputObject.cards[i].name == "feeling"){
+                        userCardText = userCardText + "\n" + "feeling: " + inputObject.cards[i].value;
+                    }
+                }
+
+                textContent = textContent + userText + userCardText;
+                console.log("send out cards");
+                console.log(textContent);
+                var patch = generatePatch(serverText, textContent);
+                serverSocket.emit("sendCards", {name: fileName, patch: patch});
+                history.pushState({name: fileName}, fileName, fileName);
+                $("[name='content']").val(textContent);
+                serverText = textContent;
+
+            });
+
+            serverSocket.on("sendCards", function(fileData){
+                //var clientText = $("[name='content']").val(),
+                    //patch = generatePatch(serverText, clientText);
+                //socket.emit("save", {p: patch});
+                //serverText = clientText;
+                //var newText = applyPatch(data.p, serverText);
+                //console.dir(data);
+                if (getFileName() == fileData.name){
+                    console.log("----- Incoming cards from server -----");
+                    console.log(fileData.patch);
+                    serverText = applyPatch(fileData.patch, getTextContent());
+                    $("[name='content']").val(serverText);
+                }
+                //$("[name='content']").val(newText);
+                //serverText = newText;
             });
 
 
