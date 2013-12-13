@@ -32,7 +32,8 @@ function applyPatch(patchText, content) {
 var expressApp = express();
 
 expressApp.set("views", path.join(__dirname, "templates"))
-   .set("view engine", "hbs");
+    .set("view engine", "hbs");
+
 
 expressApp.get("/", function(req, res) {
     res.redirect("/untitled");
@@ -87,9 +88,18 @@ var httpServer = http.createServer(expressApp),
         clientSocket.broadcast.emit("sendMessage", fileData);
         //console.log(arguments);
 
+        });
+
     });
 
-});
+    ioServer.on("connection", function(clientSocket){
+        clientSocket.on("sendCards", function(fileData){
+        fileContent[fileData.name] = applyPatch(fileData.patch, fileContent[fileData.name]);
+        clientSocket.broadcast.emit("sendCards", fileData);
+        //console.log(arguments);
+
+        });
+    });
 
 var port = process.env.PORT || 8000;
 httpServer.listen(port);
