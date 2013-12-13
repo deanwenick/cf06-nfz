@@ -16,7 +16,7 @@ APP.Router = Backbone.Router.extend({
 
 
         APP.boardView = new APP.BoardView({model: APP.board});
-        APP.boardView.render();
+        //APP.boardView.render();
         
     },//end showBoard
 

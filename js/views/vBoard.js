@@ -56,7 +56,6 @@ APP.BoardView = Backbone.View.extend ({
     },
 
     render: function(model) {
-        console.log("board view render fired")
         var attributes = this.model.attributes;
         // var html = this.template(this.model.toJSON());
         // console.log(html);
