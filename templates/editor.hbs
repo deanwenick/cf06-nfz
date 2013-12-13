@@ -265,8 +265,8 @@
              * on the server.
              */
             var serverText = "{{content}}";
-            var serverSocket = io.connect('http://localhost'); //for developemnt
-            //var serverSocket = io.connect('/'); //for production
+            //var serverSocket = io.connect('http://localhost'); //for developemnt
+            var serverSocket = io.connect('/'); //for production
             var client_guid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
                 var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
                 return v.toString(16);
