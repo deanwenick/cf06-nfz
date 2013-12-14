@@ -52,19 +52,19 @@ function applyPatch(patchText, content) {
 }
 
 // ExpressJS Server Definition
-var expressApp = express();
+//var expressApp = express();
 
-expressApp.set("views", path.join(__dirname, "templates"))
-    .set("view engine", "hbs");
+//expressApp.set("views", path.join(__dirname, "templates"))
+//    .set("view engine", "hbs");
 
 
-expressApp.get("/", function(req, res) {
-    res.redirect("/untitled");
+/*expressApp.get("/", function(req, res) {
+    //res.redirect("/untitled");
     //res.redirect("editor");
     //res.redirect("http://bbc.co.uk");
-});
+});*/
 
-expressApp.get("/:filename", function(req, res) {
+/*expressApp.get("/:filename", function(req, res) {
     var filename = req.param("filename"),
         filepath = path.join(__dirname, "data", filename);
         content = _.findWhere(fileContent, filename);
@@ -93,13 +93,18 @@ expressApp.get("/:filename", function(req, res) {
         fileContent[filename] = "";
         content = "";
     }*/
-    if(!_.has(fileContent, filename)) {
+    /*if(!_.has(fileContent, filename)) {
         fileContent[filename] = "";
     }
 
     //res.render("editor", {filename: filename, content: content});
     res.render("editor", {filename: filename, content: content});
-});
+});*/
+
+/*expressApp.get("/home", function(req, res) {
+    res.send(db);
+    console.log("index here");
+});*/
 
 expressApp.get("/board", function(req, res) {
     res.send(db);
