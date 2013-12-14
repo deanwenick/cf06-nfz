@@ -1,6 +1,5 @@
 {
   "name": "nfz",
-<<<<<<< HEAD
   "version": "0.0.1",
   "homepage": "https://github.com/deanwenick/nfz",
   "authors": [
@@ -8,13 +7,6 @@
   ],
   "description": "an exercise in sockets",
   "main": "app.js",
-=======
-  "version": "0.0.0",
-  "homepage": "https://github.com/deanwenick/nfz",
-  "authors": [
-    "Alexander <alexandermichaelmiranda@gmail.com>"
-  ],
->>>>>>> alex
   "license": "MIT",
   "ignore": [
     "**/.*",
@@ -24,14 +16,10 @@
     "tests"
   ],
   "dependencies": {
-<<<<<<< HEAD
     "jquery": "~2.0.3",
     "bootstrap": "~3.0.3",
     "underscore": "~1.5.2",
     "handlebars": "~1.1.2",
     "backbone": "~1.1.0"
-=======
-    "jquery": "~2.0.3"
->>>>>>> alex
   }
 }
