@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+//app.js
+//this is our server side code
+//node.js app uses express server
 var path = require("path"),
     _ = require("underscore"),
     express = require("express"),
@@ -8,8 +12,26 @@ var path = require("path"),
     fs = require('fs');
 
 
-var app = express()
-    .use(express.static(path.join(__dirname,"cardtext")));
+//set up pathing
+var expressApp = express().use(express.static(__dirname,
+                                        path.join(__dirname, "css"),
+                                        path.join(__dirname, "bower_components"),
+                                        path.join(__dirname, "js")));
+
+
+expressApp.use(express.bodyParser());
+
+var db = [
+    {
+        user: 'Person',
+        observations: ["O1", "O2", "03"],
+        feelings: ["F1", "F2", "F3"],
+        needs: ["N1", "N2", "N3"],
+        requests: ["R1", "R2", "R3"],
+        choices: ["C1", "C2", "C3"],
+        temperature: 5
+    }
+];
 
 // The server holds the contents of various open files in this
 // global object.
@@ -41,10 +63,6 @@ expressApp.get("/", function(req, res) {
     res.redirect("/untitled");
     //res.redirect("editor");
     //res.redirect("http://bbc.co.uk");
-});
-
-expressApp.get("/template", function(req, res) {
-    res.sendfile("./cardtext/handlebars.js");
 });
 
 expressApp.get("/:filename", function(req, res) {
@@ -84,6 +102,11 @@ expressApp.get("/:filename", function(req, res) {
     res.render("editor", {filename: filename, content: content});
 });
 
+expressApp.get("/board", function(req, res) {
+    res.send(db);
+    console.log("index here");
+});
+
 var httpServer = http.createServer(expressApp),
     ioServer = socketIO.listen(httpServer);
 
@@ -111,3 +134,4 @@ var port = process.env.PORT || 8000;
 httpServer.listen(port);
 //expressApp.listen(8000);
 console.log("Started NFZ on port 8000");
+
