@@ -8,7 +8,8 @@ APP.Router = Backbone.Router.extend({
         "observations"   : "collectObservations",
         "feelings"       : "collectFeelings",
         "needs"          : "collectNeeds",
-        "choices"        : "collectChoices"
+        "choices"        : "collectChoices",
+        "request"        : "collectRequest"
     },
 
     //get object passed by app.js
@@ -37,26 +38,11 @@ APP.Router = Backbone.Router.extend({
         APP.choices = new APP.Choices();
         APP.choicesView = new APP.ChoicesView({model: APP.choices});
     },
-    
-    showStories: function() {
 
-        //this makes a new collection instance
-        APP.stories = new APP.Stories();
-
-        //get an object from db called collection
-        //can be called anything
-        APP.stories.fetch( {
-            success: function( collection, response, options ){
-                APP.storiesView = new APP.StoriesView({
-                    collection: collection
-                });
-
-                APP.storiesView.render();
-
-                $( '#content' ).html( APP.storiesView.$el );
-            }//end success
-        });
-    }//end show stories
+    collectRequest: function() {
+        alert("requestView");
+        APP.requestView = new APP.RequestView();
+    },
 
 });
 

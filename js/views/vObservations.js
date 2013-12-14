@@ -1,6 +1,5 @@
-//vBoard.js
-//view for whole board
-//visible on main page and last page
+//vObservations.js
+//view for making observations at
 
 APP.ObservationView = Backbone.View.extend ({
 
@@ -8,6 +7,7 @@ APP.ObservationView = Backbone.View.extend ({
 
     template: Handlebars.compile (
         
+        '<h3>Observations</h3>' +
         '<form id=observationForm>' +
         '<label for=observation><input type=text name=observation id=observation></label>' +
         '<button type=button>Submit</button>' +

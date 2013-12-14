@@ -2,17 +2,18 @@
 //view for formulating and making a request
 //visible on main page and last page
 
-APP.ObservationView = Backbone.View.extend ({
+APP.RequestView = Backbone.View.extend ({
 
     el: "#guts",
 
     template: Handlebars.compile (
         
-        '<form id=observationForm>' +
-        '<label for=observation><input type=text name=observation id=observation></label>' +
+        '<h3>Make a request</h3>' +
+        '<form id=requestForm>' +
+        '<label for=request><input type=text name=request id=request></label>' +
         '<button type=button>Submit</button>' +
         '</form>' +
-        '<ul id=myObservations></ul>'
+        '<ul id=myRequests></ul>'
 
         ),
 
@@ -28,18 +29,15 @@ APP.ObservationView = Backbone.View.extend ({
     },
 
     events: {
-        'click button' : 'registerObservation'
+        'click button' : 'registerRequest'
     },
 
-    registerObservation: function() {
-        var observationField = $('#observation');
-        var observation = observationField.val();
-        APP.NFZ.observations.push( {label: observation, type: "observations", color: "blue"} );
-        $('#myObservations').append('<li>' + observation + ' </li>');
-        observationField.val("");
+    registerRequest: function() {
+        var observationField = $('#request');
+        var request = requestField.val();
+        APP.NFZ.requests.push( {label: request, type: "requests", color: "blue"} );
+        $('#myRequests').append('<li>' + request + ' </li>');
+        requestField.val("");
     }
-
-
-
 
 });
