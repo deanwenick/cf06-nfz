@@ -12,8 +12,6 @@ APP.Router = Backbone.Router.extend({
     showBoard: function() {
 
         APP.board = new APP.Board();
-
-
         APP.boardView = new APP.BoardView({model: APP.board});
         
     },//end showBoard
@@ -21,6 +19,7 @@ APP.Router = Backbone.Router.extend({
     collectObservations: function() {
         APP.observations = new APP.ObservationView();
     },
+    
     showStories: function() {
 
         //this makes a new collection instance
