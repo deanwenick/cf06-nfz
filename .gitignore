@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 node_modules/
 temp/
 bower_components/
 
+=======
+node_modules
+bower_components
+npm-debug.log
+>>>>>>> alex

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 12/9 divided tasks
     Zoie - set up socket io and express, underscore, etc.
     Alex - configure mongo db, investigate user auth with passport js
@@ -100,3 +101,8 @@ Credits
 
 * The faces' images are taken from [svg-cards](http://svg-cards.sourceforge.net/)
 * One of the cards back images was taken from http://www.squidfingers.com/patterns/
+=======
+Bash Command to mongo import cards.json file for the project:
+
+mongoimport --db test --collection cards --file cards.json --jsonArray
+>>>>>>> alex
