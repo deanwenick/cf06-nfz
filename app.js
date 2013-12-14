@@ -105,7 +105,6 @@ function applyPatch(patchText, content) {
     res.send(db);
     console.log("index here");
 });*/
-
 expressApp.get("/board", function(req, res) {
     res.send(db);
     console.log("index here");

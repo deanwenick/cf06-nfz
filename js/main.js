@@ -17,6 +17,10 @@ advanceButton.on('click', function(){
             break;
         case "observations" :
             Backbone.history.navigate('#/feelings', {trigger: true});
+            break;
+        case "feelings" :
+            Backbone.history.navigate('#/needs', {trigger: true});
+            break;
     }
     
 });
