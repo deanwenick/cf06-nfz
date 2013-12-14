@@ -44,8 +44,4 @@ APP.FeelingsView = Backbone.View.extend ({
         $('#myFeelings').append('<li>' + feelings + ' </li>');
         //feelingsField.val("");
     }
-
-
-
-
 });

@@ -1,7 +1,7 @@
 //vChoices.js
 //view for Choices page
 
-APP.Choices = Backbone.View.extend ({
+APP.ChoicesView = Backbone.View.extend ({
 
     el: "#guts",
 
@@ -36,12 +36,12 @@ APP.Choices = Backbone.View.extend ({
         'click button' : 'registerChoices'
     },
 
-    registerneeds: function() {
+    registerchoices: function() {
         var choicesField = $('#achoice');
-        var choices = needsField.val();
+        var choices = choicesField.val();
         console.log(choices);
-        APP.NFZ.needs.push( {label: needs, type: "needs", color: "yellow"} );
-        $('#myNeeds').append('<li>' + needs + ' </li>');
+        APP.NFZ.choices.push( {label: choices, type: "choices", color: "green"} );
+        $('#myChoices').append('<li>' + choices + ' </li>');
         //feelingsField.val("");
     }
 

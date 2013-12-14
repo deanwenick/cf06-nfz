@@ -5,6 +5,8 @@ var APP = window.APP = {};
 APP.NFZ = {};
 APP.NFZ.observations = [];
 APP.NFZ.feelings = [];
+APP.NFZ.needs = [];
+APP.NFZ.choices = [];
 
 //advanceButton logic
 //make variable so not looking it up all the time
@@ -20,6 +22,9 @@ advanceButton.on('click', function(){
             break;
         case "feelings" :
             Backbone.history.navigate('#/needs', {trigger: true});
+            break;
+        case "needs" :
+            Backbone.history.navigate('#/choices', {trigger: true});
             break;
     }
     

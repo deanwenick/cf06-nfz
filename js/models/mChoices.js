@@ -6,7 +6,7 @@ APP.Choices = Backbone.Model.extend({
     urlRoot: '/game',
 
     defaults: {
-        needs: ["C1", "C2", "C3"]
+        choices: ["C1", "C2", "C3"]
     }
 
 });
