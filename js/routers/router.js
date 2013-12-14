@@ -5,7 +5,8 @@
 APP.Router = Backbone.Router.extend({
     routes: {
         "board"          : "showBoard",
-        "observations"   : "collectObservations"
+        "observations"   : "collectObservations",
+        "feelings"       : "collectFeelings"
     },
 
     //get object passed by app.js
@@ -17,7 +18,12 @@ APP.Router = Backbone.Router.extend({
     },//end showBoard
 
     collectObservations: function() {
-        APP.observations = new APP.ObservationView();
+        APP.observationsView = new APP.ObservationView();
+    },
+
+    collectFeelings: function() {
+        APP.feelings = new APP.Feelings();
+        APP.feelingsView = new APP.FeelingsView({model: APP.feelings});
     },
     
     showStories: function() {

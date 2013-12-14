@@ -28,14 +28,15 @@ APP.ObservationView = Backbone.View.extend ({
     },
 
     events: {
-        'click #observationForm' : 'registerObservation'
+        'click button' : 'registerObservation'
     },
 
     registerObservation: function() {
-        var observation = $('#observation').val();
+        var observationField = $('#observation');
+        var observation = observationField.val();
         APP.NFZ.observations.push( {label: observation, type: "observations", color: "blue"} );
         $('#myObservations').append('<li>' + observation + ' </li>');
-
+        observationField.val("");
     }
 
 
