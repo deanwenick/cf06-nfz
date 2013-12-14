@@ -18,8 +18,8 @@ var path = require("path"),
 var expressApp = express().use(express.static(__dirname,
                                         path.join(__dirname, "css"),
                                         path.join(__dirname, "bower_components"),
-                                        path.join(__dirname, "js"))),
-										path.join(__dirname, "public");
+                                        path.join(__dirname, "js"),
+										path.join(__dirname, "public")));
 
 
 expressApp.use(express.bodyParser());
@@ -113,7 +113,7 @@ expressApp.post('/', function(req, res){
 });
 
 expressApp.put('/', function(req, res){
-	
+
 })
 
 expressApp.delete('/', function(req, res) {
