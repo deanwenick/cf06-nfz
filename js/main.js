@@ -13,6 +13,10 @@ APP.NFZ.requests = [];
 //make variable so not looking it up all the time
 var advanceButton = $('#advanceButton');
 advanceButton.on('click', function(){
+
+    var oldView = $('#guts').children();
+    alert(JSON.stringify(oldView));
+    oldView.remove();
     var currentURL = Backbone.history.fragment;
     switch (currentURL) {
         case "" :

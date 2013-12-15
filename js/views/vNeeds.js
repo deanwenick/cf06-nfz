@@ -39,10 +39,10 @@ APP.NeedsView = Backbone.View.extend ({
     registerNeeds: function() {
         var needsField = $('#aneed');
         var needs = needsField.val();
-        console.log(needs);
+        console.log(needs + " blah");
         APP.NFZ.needs.push( {label: needs, type: "needs", color: "yellow"} );
         $('#myNeeds').append('<li>' + needs + ' </li>');
-        //feelingsField.val("");
+        needsField.val("");
     }
 
 

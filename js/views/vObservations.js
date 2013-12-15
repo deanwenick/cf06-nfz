@@ -3,12 +3,16 @@
 
 APP.ObservationView = Backbone.View.extend ({
 
+    tagName: "div",
+
     el: "#guts",
+
+    className: "panel",
 
     template: Handlebars.compile (
         
-        '<h3>Observations</h3>' +
-        '<form id=observationForm>' +
+        '<h3 class=panel-heading>Observations</h3>' +
+        '<form id=observationForm class=panel-body>' +
         '<label for=observation><input type=text name=observation id=observation></label>' +
         '<button type=button>Submit</button>' +
         '</form>' +

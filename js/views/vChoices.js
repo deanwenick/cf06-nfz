@@ -42,7 +42,7 @@ APP.ChoicesView = Backbone.View.extend ({
         console.log(choices);
         APP.NFZ.choices.push( {label: choices, type: "choices", color: "green"} );
         $('#myChoices').append('<li>' + choices + ' </li>');
-        //feelingsField.val("");
+        choicesField.val("");
     }
 
 
