@@ -40,11 +40,10 @@ APP.Router = Backbone.Router.extend({
     },
 
     collectRequest: function() {
-        alert("requestView");
         APP.requestView = new APP.RequestView();
     },
 
 });
 
 APP.router = new APP.Router();
-Backbone.history.start({root: "/"});
+Backbone.history.start({root: "/Chat#/"});

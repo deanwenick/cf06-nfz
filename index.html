@@ -107,7 +107,7 @@
         <nav class="navbar navbar-fixed-top container" role="navigation">
             <div class="navbar-header">
 
-                <a class="navbar-brand">NFZ</a>
+                <a href='/' class="navbar-brand">NFZ</a>
                 <!--<p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">Compassionate Person</a></p>-->
                 <p class="navbar-text navbar-right">Signed in as <a href="#" id="usernamelink" class="navbar-link">guest</a></p>
 
@@ -122,18 +122,18 @@
             <label id="label-filename" for="filename">File Name</label>
             <input id="input-filename" type="text" name="filename" value="None">
             <br/>
-            <textarea name="content" rows="15" cols="80"></textarea>
+            <textarea name="content" rows="2" cols="80"></textarea>
             <br/>
             <input type="text" class="form-control" name="userchat" placeholder="say something">
             <input type="button" name="save" value="Send">
         </form>
     </section>
 
-<section id="guts class=container">
+<section id="guts" class="container">
 </section>
 <button type=button name="advanceButton" id="advanceButton">Identify your observations at this moment</button>
 
-    <div id="cards-container" class="container">
+    <!-- <div id="cards-container" class="container">
         <div class="row">
         <div class="col-md-3">
             <div class="panel panel-primary">
@@ -173,7 +173,7 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </div> -->
   <!-- <div class="col-md-3">
     <div class="panel panel-primary">
       <div class="panel-heading">
@@ -549,8 +549,7 @@
 
                 var context = nfzObject;
                 console.log (context);
-                var source = $("#selected-cards-template")
-                    .html();
+                var source = $("#selected-cards-template").html();
                 console.log("source", source);
                 var templateDetail = Handlebars.compile(source);
                 console.log("templateDetail", templateDetail);

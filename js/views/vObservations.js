@@ -42,8 +42,4 @@ APP.ObservationView = Backbone.View.extend ({
         $('#myObservations').append('<li>' + observation + ' </li>');
         observationField.val("");
     }
-
-
-
-
 });

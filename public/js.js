@@ -52,7 +52,7 @@ $(document).ready(function(){
 		});
 	});
 
-	$.ajax({
+/*	$.ajax({
 		url: '/',
 		type: "GET",
 		dataType: 'json',
@@ -62,5 +62,5 @@ $(document).ready(function(){
 		error: function(){
 			console.log("failed!!");
 		}
-	});
+	});*/
 });

@@ -6,6 +6,19 @@ APP.NeedsView = Backbone.View.extend ({
     el: "#guts",
 
     template: Handlebars.compile (
+
+        '<div class="panel-body">' +
+
+                    '<ul class="list-group">' +
+                      '<li class="list-group-item">' +
+                        '<input type="checkbox" name="choice" value="listen to thoughts about you"  /> Listen to      thoughts about YOU:</li>' +
+                      '<li class="list-group-item">' +
+                        '<input type="checkbox" name="choice" value="listen to thoughts about me"  /> Listen to thoughts      about ME:</li>' +
+                      '<li class="list-group-item">' +
+                       ' <input type="checkbox" name="choice" value="tell my story"  /> Tell my Story</li>' +
+                                             '</ul></div>' +
+        '<button type=button name=submitNeedsList id=submitNeedsList>Add Needs</button>' +
+
         '<div class=container><h3>Needs:</h3>' +
         '<ul id=needs>' +
         '{{#each needs}}' +
@@ -33,7 +46,17 @@ APP.NeedsView = Backbone.View.extend ({
     },
 
     events: {
-        'click #submitNeed' : 'registerNeeds'
+        'click #submitNeed' : 'registerNeeds',
+        'click #submitNeedsList' : 'addNeedsList'
+    },
+
+    addNeedsList: function() {
+        var fields = $( "input:checked" ).toArray();
+        $.each(fields, function(index, value) {
+        var need = value.value;
+        $('#myNeeds').append('<li>' + need + ' </li>');
+        APP.NFZ.needs.push( {label: need, type: "need", color: "yellow"} );
+        });
     },
 
     registerNeeds: function() {
@@ -43,8 +66,4 @@ APP.NeedsView = Backbone.View.extend ({
         $('#myNeeds').append('<li>' + needs + ' </li>');
         needsField.val("");
     }
-
-
-
-
 });

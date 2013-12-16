@@ -54,8 +54,12 @@ APP.FeelingsView = Backbone.View.extend ({
     },
 
     addFeelingsList: function() {
-        fields = $( "input:checked" ).toArray();
-        $.each(fields, function(){alert('hello');});
+        var fields = $( "input:checked" ).toArray();
+        $.each(fields, function(index, value) {
+        var feeling = value.value;
+        $('#myFeelings').append('<li>' + feeling + ' </li>');
+        APP.NFZ.feelings.push( {label: feeling, type: "feelings", color: "red"} );
+        });
     },
 
     registerFeelings: function() {
