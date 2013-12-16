@@ -14,7 +14,7 @@ APP.ObservationView = Backbone.View.extend ({
         '<h3 class=panel-heading>Observations</h3>' +
         '<form id=observationForm class=panel-body>' +
         '<label for=observation><input type=text name=observation id=observation></label>' +
-        '<button type=button>Submit</button>' +
+        '<button type=button name=submitObservation id=submitObservation>Submit</button>' +
         '</form>' +
         '<ul id=myObservations></ul>'
 
@@ -32,7 +32,7 @@ APP.ObservationView = Backbone.View.extend ({
     },
 
     events: {
-        'click button' : 'registerObservation'
+        'click #submitObservation' : 'registerObservation'
     },
 
     registerObservation: function() {

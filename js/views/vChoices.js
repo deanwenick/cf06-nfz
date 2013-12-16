@@ -14,7 +14,7 @@ APP.ChoicesView = Backbone.View.extend ({
         '</ul>' +
         '<form id=choicesForm>' +
         '<label for=achoice><input type=text name=achoice id=achoice></label>' +
-        '<button type=button>Submit</button>' +
+        '<button type=button name=submitChoice id=submitChoice>Submit</button>' +
         '</form>' +
         '<ul id=myChoices></ul>' +
         '</div>'
@@ -33,13 +33,12 @@ APP.ChoicesView = Backbone.View.extend ({
     },
 
     events: {
-        'click button' : 'registerChoices'
+        'click #submitChoice' : 'registerChoices'
     },
 
     registerchoices: function() {
         var choicesField = $('#achoice');
         var choices = choicesField.val();
-        console.log(choices);
         APP.NFZ.choices.push( {label: choices, type: "choices", color: "green"} );
         $('#myChoices').append('<li>' + choices + ' </li>');
         choicesField.val("");

@@ -5,6 +5,8 @@ APP.FeelingsView = Backbone.View.extend ({
 
     el: "#guts",
 
+    tagName: "p",
+
     template: Handlebars.compile (
         '<div class=container><h3>Feelings:</h3>' +
         '<ul id=feelings>' +
@@ -14,7 +16,7 @@ APP.FeelingsView = Backbone.View.extend ({
         '</ul>' +
         '<form id=feelingsForm>' +
         '<label for=afeeling><input type=text name=afeeling id=afeeling></label>' +
-        '<button type=button>Submit</button>' +
+        '<button type=button name=submitFeeling id=submitFeeling>Submit</button>' +
         '</form>' +
         '<ul id=myFeelings></ul>' +
         '</div>'
@@ -33,15 +35,14 @@ APP.FeelingsView = Backbone.View.extend ({
     },
 
     events: {
-        'click button' : 'registerFeelings'
+        'click #submitFeeling' : 'registerFeelings'
     },
 
     registerFeelings: function() {
         var feelingsField = $('#afeeling');
         var feelings = feelingsField.val();
-        console.log(feelings);
         APP.NFZ.feelings.push( {label: feelings, type: "feelings", color: "red"} );
         $('#myFeelings').append('<li>' + feelings + ' </li>');
-        //feelingsField.val("");
+        feelingsField.val("");
     }
 });

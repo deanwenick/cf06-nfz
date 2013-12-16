@@ -14,7 +14,7 @@ APP.NeedsView = Backbone.View.extend ({
         '</ul>' +
         '<form id=needsForm>' +
         '<label for=aneed><input type=text name=aneed id=aneed></label>' +
-        '<button type=button>Submit</button>' +
+        '<button type=button name=submitNeed id=submitNeed>Submit</button>' +
         '</form>' +
         '<ul id=myNeeds></ul>' +
         '</div>'
@@ -33,13 +33,12 @@ APP.NeedsView = Backbone.View.extend ({
     },
 
     events: {
-        'click button' : 'registerNeeds'
+        'click #submitNeed' : 'registerNeeds'
     },
 
     registerNeeds: function() {
         var needsField = $('#aneed');
         var needs = needsField.val();
-        console.log(needs + " blah");
         APP.NFZ.needs.push( {label: needs, type: "needs", color: "yellow"} );
         $('#myNeeds').append('<li>' + needs + ' </li>');
         needsField.val("");

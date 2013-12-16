@@ -14,7 +14,7 @@ APP.NFZ.requests = [];
 var advanceButton = $('#advanceButton');
 advanceButton.on('click', function(){
 
-    var oldView = $('#guts').children();
+    var oldView = $('#guts').contents();
     alert(JSON.stringify(oldView));
     oldView.remove();
     var currentURL = Backbone.history.fragment;

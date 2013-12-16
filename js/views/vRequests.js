@@ -11,7 +11,7 @@ APP.RequestView = Backbone.View.extend ({
         '<h3>Make a request</h3>' +
         '<form id=requestForm>' +
         '<label for=request><input type=text name=request id=request></label>' +
-        '<button type=button>Submit</button>' +
+        '<button type=button name=submitRequest id=submitRequest>Submit</button>' +
         '</form>' +
         '<ul id=myRequests></ul>'
 
@@ -29,7 +29,7 @@ APP.RequestView = Backbone.View.extend ({
     },
 
     events: {
-        'click button' : 'registerRequest'
+        'click #submitRequest' : 'registerRequest'
     },
 
     registerRequest: function() {

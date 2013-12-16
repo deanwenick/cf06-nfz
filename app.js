@@ -8,14 +8,18 @@ var path = require("path"),
     socketIO = require("socket.io"),
     http = require('http'),
     patch = require('diff_match_patch'),
-    fs = require('fs');
+    fs = require('fs'),
+    mongoose = require('mongoose'),
+    a = require('./public/person'),
+	b = require('./public/card');
 
 
 //set up pathing
 var expressApp = express().use(express.static(__dirname,
                                         path.join(__dirname, "css"),
                                         path.join(__dirname, "bower_components"),
-                                        path.join(__dirname, "js")));
+                                        path.join(__dirname, "js"),
+										path.join(__dirname, "public")));
 
 
 expressApp.use(express.bodyParser());
@@ -59,7 +63,11 @@ function applyPatch(patchText, content) {
 
 
 /*expressApp.get("/", function(req, res) {
+<<<<<<< HEAD
     //res.redirect("/untitled");
+=======
+    res.redirect("/untitled");
+>>>>>>> zoie
     //res.redirect("editor");
     //res.redirect("http://bbc.co.uk");
 });*/
@@ -69,6 +77,7 @@ function applyPatch(patchText, content) {
         filepath = path.join(__dirname, "data", filename);
         content = _.findWhere(fileContent, filename);
 
+<<<<<<< HEAD
     /*if (fs.existsSync(filepath)){
         var content = fs.readFileSync(filepath);
         res.render("editor", {filename: filename, content: content})
@@ -94,20 +103,65 @@ function applyPatch(patchText, content) {
         content = "";
     }*/
     /*if(!_.has(fileContent, filename)) {
+=======
+    if(!_.has(fileContent, filename)) {
+>>>>>>> zoie
         fileContent[filename] = "";
     }
 
-    //res.render("editor", {filename: filename, content: content});
     res.render("editor", {filename: filename, content: content});
 });*/
 
-/*expressApp.get("/home", function(req, res) {
-    res.send(db);
-    console.log("index here");
-});*/
+
 expressApp.get("/board", function(req, res) {
     res.send(db);
     console.log("index here");
+});
+
+expressApp.get('/', function(req, res){
+	//res.render('index.html');
+	res.send(db);
+	console.log('working');
+});
+
+expressApp.post('/', function(req, res){
+	console.log("POST: ");
+	console.log(req.body);
+	var person = new a.Person({
+		userName: req.body.userName,
+		firstName: req.body.firstName,
+		lastName: req.body.lastName,
+		email: req.body.email,
+	});
+	console.log(person);
+	person.save(function(err){
+		if (!err) {
+			return console.log("created");
+		}
+		else {
+			return console.log(err);
+		}
+	});
+	return res.send(person);
+});
+
+expressApp.put('/', function(req, res){
+
+});
+
+expressApp.delete('/', function(req, res) {
+	console.log(req.body);
+	return a.Person.findOne({userName: req.body.userName}, function(err, person) {
+		return person.remove(function(err) {
+		if (!err) {
+			console.log("removed");
+			return res.send('');
+		}
+		else {
+			console.log(err);
+		}
+	});
+	});
 });
 
 var httpServer = http.createServer(expressApp),
