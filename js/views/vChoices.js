@@ -6,6 +6,17 @@ APP.ChoicesView = Backbone.View.extend ({
     el: "#guts",
 
     template: Handlebars.compile (
+
+        '<div class="panel-body">' +
+
+        '<ul class="list-group">' +
+          '<li class="list-group-item">' +
+                '<input type="checkbox" name="choice" value="listen to thoughts about you" /> Listen to thoughts about YOU:</li>' +
+          '<li class="list-group-item"><input type="checkbox" name="choice" value="listen to thoughts about me"  /> Listen to thoughts about ME:</li>' +
+          '<li class="list-group-item"><input type="checkbox" name="choice" value="tell my story" /> Tell my Story</li>' +
+            '</ul></div>' +
+        '<button type=button name=submitChoicesList id=submitChoicesList>Add Choices</button>' +
+
         '<div class=container><h3>Choices:</h3>' +
         '<ul id=choices>' +
         '{{#each choices}}' +
@@ -33,10 +44,20 @@ APP.ChoicesView = Backbone.View.extend ({
     },
 
     events: {
-        'click #submitChoice' : 'registerChoices'
+        'click #submitChoice' : 'registerChoices',
+        'click #submitChoicesList' : 'addChoicesList'
     },
 
-    registerchoices: function() {
+    addChoicesList: function() {
+        var fields = $( "input:checked" ).toArray();
+        $.each(fields, function(index, value) {
+        var choice = value.value;
+        $('#myChoices').append('<li>' + choice + ' </li>');
+        APP.NFZ.choices.push( {label: choice, type: "choices", color: "green"} );
+        });
+    },
+
+    registerChoices: function() {
         var choicesField = $('#achoice');
         var choices = choicesField.val();
         APP.NFZ.choices.push( {label: choices, type: "choices", color: "green"} );

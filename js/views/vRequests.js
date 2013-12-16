@@ -33,7 +33,7 @@ APP.RequestView = Backbone.View.extend ({
     },
 
     registerRequest: function() {
-        var observationField = $('#request');
+        var requestField = $('#request');
         var request = requestField.val();
         APP.NFZ.requests.push( {label: request, type: "requests", color: "blue"} );
         $('#myRequests').append('<li>' + request + ' </li>');
