@@ -8,30 +8,30 @@ APP.BoardView = Backbone.View.extend ({
 
     template: function(){
         var board = "<div id=myBoard class=container>";
-        board += "<h3>Your Observations:</h3><ul>";
+        board += "<h3>Observations:</h3><ul>";
         $.each(APP.NFZ.observations, function(i,val) {
             board += "<li>" + val.label + "</li>";
         });
         board += "</ul>";
-        board += "<h3>Your Feelings</h3>";
+        board += "<h3>Feelings</h3>";
         board += "</ul>";
         $.each(APP.NFZ.feelings, function(i,val) {
             board += "<li>" + val.label + "</li>";
         });
         board += "</ul>";
-        board += "<h3>Your Needs</h3>";
+        board += "<h3>Needs</h3>";
         board += "</ul>";
         $.each(APP.NFZ.needs, function(i,val) {
             board += "<li>" + val.label + "</li>";
         });
         board += "</ul>";
-        board += "<h3>Your Choices</h3>";
+        board += "<h3>Choices</h3>";
         board += "</ul>";
         $.each(APP.NFZ.choices, function(i,val) {
             board += "<li>" + val.label + "</li>";
         });
         board += "</ul>";
-        board += "<h3>Your Requests</h3>";
+        board += "<h3>Requests</h3>";
         board += "</ul>";
         $.each(APP.NFZ.requests, function(i,val) {
             board += "<li>" + val.label + "</li>";
