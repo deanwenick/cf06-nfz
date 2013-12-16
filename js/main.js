@@ -67,22 +67,9 @@ function sendMyBoard(){
 
 }
 
+//receive information about other board and render it
 serverSocket.on("sendCards", function(fileData){
     console.log("boo");
     $('#guts').html(fileData.html);
-    //var clientText = $("[name='content']").val(),
-        //patch = generatePatch(serverText, clientText);
-    //socket.emit("save", {p: patch});
-    //serverText = clientText;
-    //var newText = applyPatch(data.p, serverText);
-   //console.dir("data: " + fileData);
-/*    if (getFileName() == fileData.name){
-        console.log("----- Incoming cards from server -----");
-        console.log(fileData.patch);
-        serverText = applyPatch(fileData.patch, getTextContent());
-        //console.log(serverText);
-        $("[name='content']").val(serverText);
-    }*/
-    //$("[name='content']").val(newText);
-    //serverText = newText;
+
 });
