@@ -1,16 +1,20 @@
-//vBoard.js
-//view for whole board
-//visible on main page and last page
+//vObservations.js
+//view for making observations at
 
 APP.ObservationView = Backbone.View.extend ({
 
+    tagName: "div",
+
     el: "#guts",
+
+    className: "panel",
 
     template: Handlebars.compile (
         
-        '<form id=observationForm>' +
+        '<h3 class=panel-heading>Observations</h3>' +
+        '<form id=observationForm class=panel-body>' +
         '<label for=observation><input type=text name=observation id=observation></label>' +
-        '<button type=button>Submit</button>' +
+        '<button type=button name=submitObservation id=submitObservation>Submit</button>' +
         '</form>' +
         '<ul id=myObservations></ul>'
 
@@ -28,14 +32,15 @@ APP.ObservationView = Backbone.View.extend ({
     },
 
     events: {
-        'click #observationForm' : 'registerObservation'
+        'click #submitObservation' : 'registerObservation'
     },
 
     registerObservation: function() {
-        var observation = $('#observation').val();
+        var observationField = $('#observation');
+        var observation = observationField.val();
         APP.NFZ.observations.push( {label: observation, type: "observations", color: "blue"} );
         $('#myObservations').append('<li>' + observation + ' </li>');
-
+        observationField.val("");
     }
 
 

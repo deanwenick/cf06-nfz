@@ -9,6 +9,7 @@ var cardSchema = new Schema({
 	color: {type: String, default: ''}
 });
 var Card = mongoose.model('Card', cardSchema);
+var card_data;
 
 // Database
 
@@ -20,6 +21,7 @@ db.on('error', console.error.bind(console, 'connection error:'));
 var card_data = JSON.parse(fs.readFileSync('cards.json', 'utf8'));
 console.log(card_data);
 module.exports.card_data = card_data;
+
 module.exports.Card = Card;
 
 

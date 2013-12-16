@@ -1,3 +1,19 @@
+//handle data coming from db on intital page load
+//called in ajax call below
+
+function createCardDeck(data){
+	console.log("in create deck");
+	var choices = [],
+		needs = [],
+		feelings = [];
+
+		_.each(data['cards'], function() {
+			if (data['cards'].type === 'Feelings') {
+				console.log("creating deck");
+			}
+		});
+}
+
 $(document).ready(function(){
 	$('#send').on('click', function(event){
 		event.preventDefault();
@@ -7,7 +23,7 @@ $(document).ready(function(){
 			lastName: $('#lastName').val(),
 			email: $('#email').val()
 		}, function(data, textStatus, jqXHR) {
-			console.log("Post response:"); console.dir(data); console.log(textStatus); console.dir(jqXHR); 
+			console.log("Post response:"); console.dir(data); console.log(textStatus); console.dir(jqXHR);
 		});
 	});
 
@@ -48,4 +64,3 @@ $(document).ready(function(){
 		}
 	});
 });
-

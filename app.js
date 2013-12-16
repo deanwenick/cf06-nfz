@@ -149,7 +149,7 @@ expressApp.get('/', function(req, res){
 
 expressApp.put('/', function(req, res){
 
-})
+});
 
 expressApp.delete('/login', function(req, res) {
 	console.log(req.body);
@@ -162,7 +162,7 @@ expressApp.delete('/login', function(req, res) {
 		else {
 			console.log(err);
 		}
-	})
+	});
 	});
 });
 
@@ -229,7 +229,7 @@ var httpServer = http.createServer(expressApp),
                     else {
                         console.log(err);
                     }
-                })
+                });
             });
             //clientSocket.emit("login", Data);
 
