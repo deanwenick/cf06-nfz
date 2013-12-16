@@ -5,9 +5,23 @@ APP.FeelingsView = Backbone.View.extend ({
 
     el: "#guts",
 
-    tagName: "p",
-
     template: Handlebars.compile (
+
+        ' <div class="panel-body">' +
+        '<ul class="list-group">' +
+        '<li class="list-group-item">' +
+          '<input type="checkbox" name="feeling" value="eager"  /> Eager' +
+        '</li>' +
+        '<li class="list-group-item">' +
+          '<input type="checkbox" name="feeling" value="uneasy"  /> Uneasy' +
+        '</li>' +
+        '<li class="list-group-item">' +
+          '<input type="checkbox" name="feeling" value="curious"  /> Curious' +
+        '</li>' +
+        '</ul>' +
+        '<button type=button name=submitFeelingsList id=submitFeelingsList>Add Feelings</button>' +
+      '</div>' +
+
         '<div class=container><h3>Feelings:</h3>' +
         '<ul id=feelings>' +
         '{{#each feelings}}' +
@@ -16,7 +30,7 @@ APP.FeelingsView = Backbone.View.extend ({
         '</ul>' +
         '<form id=feelingsForm>' +
         '<label for=afeeling><input type=text name=afeeling id=afeeling></label>' +
-        '<button type=button name=submitFeeling id=submitFeeling>Submit</button>' +
+        '<button type=button name=submitFeelings id=submitFeelings>Submit</button>' +
         '</form>' +
         '<ul id=myFeelings></ul>' +
         '</div>'
@@ -35,7 +49,13 @@ APP.FeelingsView = Backbone.View.extend ({
     },
 
     events: {
-        'click #submitFeeling' : 'registerFeelings'
+        'click #submitFeelings' : 'registerFeelings',
+        'click #submitFeelingsList' : 'addFeelingsList'
+    },
+
+    addFeelingsList: function() {
+        fields = $( "input:checked" ).toArray();
+        $.each(fields, function(){alert('hello');});
     },
 
     registerFeelings: function() {
