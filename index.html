@@ -123,13 +123,19 @@
             <div id="temp-scale" class="well clear"></div>
             <div id="temperatura"></div>
             <script>
-            
-              $("#temperatura").slider();
-              var color = d3.scale.linear()
-                .domain([0, 50, 100])
-                .range(["blue", "green", "red"]);
-                
-                $("#temp-scale").css({"background-color":color(33)});
+              $("#temperatura").slider({
+                stop: function(event, ui) {
+                  var colorTemp = ui.value;
+                  //make range of colors
+                  var color = d3.scale.linear()
+                    .domain([0, 50, 100])
+                    .range(["blue", "green", "red"]);
+                  //set color of visible scale
+                  $("#temp-scale").css({"background-color":color(colorTemp)});
+                }
+              });
+
+
             </script>
         </nav>
     </header>
