@@ -16,12 +16,12 @@ var path = require("path"),
 
 
 //set up pathing
-var expressApp = express()
-                            .use(express.static(path.join(__dirname, "css")))
-                            .use(express.static(path.join(__dirname, "bower_components")))
-                            .use(express.static(path.join(__dirname, "js")))
-							.use(express(path.join(__dirname, "public")))
-                            .engine('html', require('ejs').renderFile);
+var expressApp = express().use(express.static(__dirname,
+                                        path.join(__dirname, "css"),
+                                        path.join(__dirname, "bower_components"),
+                                        path.join(__dirname, "js"),
+										path.join(__dirname, "public")));
+
 
 expressApp.set(express.bodyParser());
 
