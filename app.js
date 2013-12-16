@@ -10,19 +10,20 @@ var path = require("path"),
     patch = require('diff_match_patch'),
     fs = require('fs'),
     mongoose = require('mongoose'),
+    hbs = require('handlebars'),
     a = require('./public/person'),
 	b = require('./public/card');
 
 
 //set up pathing
-var expressApp = express().use(express.static(__dirname,
-                                        path.join(__dirname, "css"),
-                                        path.join(__dirname, "bower_components"),
-                                        path.join(__dirname, "js"))),
-										path.join(__dirname, "public");
-
-
-expressApp.use(express.bodyParser());
+var expressApp = express()
+                            .use(express.static(path.join(__dirname, "css")))
+                            .use(express.static(path.join(__dirname, "bower_components")))
+                            .use(express.static(path.join(__dirname, "js")))
+							.use(express(path.join(__dirname, "public")))
+                            .engine('html', require('ejs').renderFile);
+                            
+expressApp.set(express.bodyParser());
 
 var db = [
     {
@@ -116,12 +117,11 @@ expressApp.get("/board", function(req, res) {
 });
 
 expressApp.get('/', function(req, res){
-	//res.render('index.html');
-	res.render('b.card_data');
-	console.log(b.card_data);
+	res.send(b.card_data);
+    console.log(b.card_data);
 });
 
-expressApp.post('/', function(req, res){
+expressApp.post('/login', function(req, res){
 	console.log("POST: ");
 	console.log(req.body);
 	var person = new a.Person({
@@ -146,7 +146,7 @@ expressApp.put('/', function(req, res){
 	
 })
 
-expressApp.delete('/', function(req, res) {
+expressApp.delete('/login', function(req, res) {
 	console.log(req.body);
 	return a.Person.findOne({userName: req.body.userName}, function(err, person) {
 		return person.remove(function(err) {
