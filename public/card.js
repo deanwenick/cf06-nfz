@@ -17,20 +17,9 @@ mongoose.connect('mongodb://localhost/test');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 
-var card_data = fs.readFile('cards.json', function(err, data){
-	if (err){
-		return console.log(err);
-	}
-
-	db_cards = JSON.parse(data);
-	console.log(db_cards);
-	return db_cards;
-});
-
-
-
-
-module.exports.card_data;
-module.exports.Card;
+var card_data = JSON.parse(fs.readFileSync('cards.json', 'utf8'));
+console.log(card_data);
+module.exports.card_data = card_data;
+module.exports.Card = Card;
 
 

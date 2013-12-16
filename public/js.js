@@ -1,8 +1,7 @@
 $(document).ready(function(){
 	$('#send').on('click', function(event){
 		event.preventDefault();
-		console.log("you suck!");
-		jQuery.post('/', {
+		jQuery.post('/login', {
 			userName: $('#userName').val(),
 			firstName: $('#firstName').val(),
 			lastName: $('#lastName').val(),
@@ -16,7 +15,7 @@ $(document).ready(function(){
 		event.preventDefault();
 		console.log("deleted!");
 		$.ajax({
-			url: '/',
+			url: '/login',
 			type: "DELETE",
 			success: function (data, textStatus, jqXHR) {
 				console.log("Post response:");
@@ -36,4 +35,17 @@ $(document).ready(function(){
 
 		});
 	});
+
+	$.ajax({
+		url: '/',
+		type: "GET",
+		dataType: 'json',
+		success: function (data, textStatus, jqXHR) {
+			console.log(data);
+		},
+		error: function(){
+			console.log("failed!!");
+		}
+	});
 });
+
