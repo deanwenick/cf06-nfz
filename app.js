@@ -63,11 +63,9 @@ function applyPatch(patchText, content) {
 
 
 /*expressApp.get("/", function(req, res) {
-<<<<<<< HEAD
+
     //res.redirect("/untitled");
-=======
-    res.redirect("/untitled");
->>>>>>> zoie
+
     //res.redirect("editor");
     //res.redirect("http://bbc.co.uk");
 });*/
@@ -77,7 +75,6 @@ function applyPatch(patchText, content) {
         filepath = path.join(__dirname, "data", filename);
         content = _.findWhere(fileContent, filename);
 
-<<<<<<< HEAD
     /*if (fs.existsSync(filepath)){
         var content = fs.readFileSync(filepath);
         res.render("editor", {filename: filename, content: content})
@@ -103,9 +100,7 @@ function applyPatch(patchText, content) {
         content = "";
     }*/
     /*if(!_.has(fileContent, filename)) {
-=======
-    if(!_.has(fileContent, filename)) {
->>>>>>> zoie
+
         fileContent[filename] = "";
     }
 
