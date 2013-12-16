@@ -20,6 +20,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.0/backbone-min.js"></script>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.3.11/d3.min.js"></script>
 
     <!--<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">-->
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -121,7 +122,15 @@
             </div>
             <div id="temp-scale" class="well clear"></div>
             <div id="temperatura"></div>
-            <script>$("#temperatura").slider({value: 10});</script>
+            <script>
+            
+              $("#temperatura").slider();
+              var color = d3.scale.linear()
+                .domain([0, 50, 100])
+                .range(["blue", "green", "red"]);
+                
+                $("#temp-scale").css({"background-color":color(33)});
+            </script>
         </nav>
     </header>
 
