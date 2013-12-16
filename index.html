@@ -32,7 +32,11 @@
         }
         #advanceButton {
             width: 100%;
-            text-align: right
+            text-align: center;
+            margin-top: 1.5em;
+        }
+        textarea {
+          padding-left: 1.5em
         }
         .navbar {
             margin-bottom: 0;
@@ -47,6 +51,7 @@
         <p class="browsehappy">Well hello! Fancy meeting you here. You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
+    <!-- below not used -->
     <script id="selected-cards-template" type="text/x-handlebars-template">
           <div>Your partner selected these cards:</div>
           <ul class="nav nav-pills nav-stacked">
@@ -56,14 +61,13 @@
               {{/if}}
             {{/each}}
           </ul>
-
     </script>
 
     <div id="loginModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <button type="button" class="close btn" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h3>Welcome Aboard</h3>
                 </div>
                 <form class="loginform" method="POST">
@@ -122,16 +126,16 @@
             <label id="label-filename" for="filename">File Name</label>
             <input id="input-filename" type="text" name="filename" value="None">
             <br/>
-            <textarea name="content" rows="2" cols="80"></textarea>
+            <textarea name="content" rows="4" cols="80"></textarea>
             <br/>
             <input type="text" class="form-control" name="userchat" placeholder="say something">
-            <input type="button" name="save" value="Send">
+            <input type="button" name="save" value="Send" class="btn">
         </form>
     </section>
 
 <section id="guts" class="container">
 </section>
-<button type=button name="advanceButton" id="advanceButton">Identify your observations at this moment</button>
+<div class=container><button type=button name="advanceButton" id="advanceButton" class="btn">Get started with your observations &rarr;&nbsp;&rarr;</button></div>
 
     <!-- <div id="cards-container" class="container">
         <div class="row">

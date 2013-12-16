@@ -6,7 +6,43 @@ APP.BoardView = Backbone.View.extend ({
 
     el: "#guts",
 
+    template: function(){
+        var board = "";
+        board += "<h3>Your Observations:</h3><ul>";
+        $.each(APP.NFZ.observations, function(i,val) {
+            board += "<li>" + val.label + "</li>";
+        });
+        board += "</ul>";
+        board += "<h3>Your Feelings</h3>";
+        board += "</ul>";
+        $.each(APP.NFZ.feelings, function(i,val) {
+            board += "<li>" + val.label + "</li>";
+        });
+        board += "</ul>";
+        board += "<h3>Your Needs</h3>";
+        board += "</ul>";
+        $.each(APP.NFZ.needs, function(i,val) {
+            board += "<li>" + val.label + "</li>";
+        });
+        board += "</ul>";
+        board += "<h3>Your Choices</h3>";
+        board += "</ul>";
+        $.each(APP.NFZ.choices, function(i,val) {
+            board += "<li>" + val.label + "</li>";
+        });
+        board += "</ul>";
+        board += "<h3>Your Requests</h3>";
+        board += "</ul>";
+        $.each(APP.NFZ.requests, function(i,val) {
+            board += "<li>" + val.label + "</li>";
+        });
+        board += "</ul>";
+        return board;
+    },
+    /*
+
     template: Handlebars.compile (
+
         '<div class=container><h3>Observations:</h3>' +
         '<ul id=observations>' +
         '{{#each observations}}' +
@@ -47,7 +83,7 @@ APP.BoardView = Backbone.View.extend ({
         '</ul>' +
         '</div>'
 
-        ),
+        ),*/
 
     initialize: function() {
         this.listenTo(this.model, 'change', this.render);
@@ -56,7 +92,7 @@ APP.BoardView = Backbone.View.extend ({
 
     render: function(model) {
         var attributes = this.model.attributes;
-        this.$el.html(this.template(attributes));
+        this.$el.html(this.template());
 
     }
 

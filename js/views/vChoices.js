@@ -7,6 +7,9 @@ APP.ChoicesView = Backbone.View.extend ({
 
     template: Handlebars.compile (
 
+
+        '<div class=container><h3>Choices:</h3>' +
+        '<p>Each moment we have choices about how we respond to life. What are these choices? We expand our freedom by developing greater awareness of our choices, and by learning new skills for responding. Nonviolent Communication practice develops new skills, which thereby increase our choices for making observations, listening to our feelings and needs, listening to others’ feelings and needs, making requests, solving problems, and resolving conflicts.</p>' +
         '<div class="panel-body">' +
 
         '<ul class="list-group">' +
@@ -15,17 +18,10 @@ APP.ChoicesView = Backbone.View.extend ({
           '<li class="list-group-item"><input type="checkbox" name="choice" value="listen to thoughts about me"  /> Listen to thoughts about ME:</li>' +
           '<li class="list-group-item"><input type="checkbox" name="choice" value="tell my story" /> Tell my Story</li>' +
             '</ul></div>' +
-        '<button type=button name=submitChoicesList id=submitChoicesList>Add Choices</button>' +
-
-        '<div class=container><h3>Choices:</h3>' +
-        '<ul id=choices>' +
-        '{{#each choices}}' +
-            '<li>{{.}}</li>' +
-            '{{/each}}' +
-        '</ul>' +
+        '<button type=button name=submitChoicesList id=submitChoicesList class=btn>Add Choices</button>' +
         '<form id=choicesForm>' +
         '<label for=achoice><input type=text name=achoice id=achoice></label>' +
-        '<button type=button name=submitChoice id=submitChoice>Submit</button>' +
+        '<button type=button name=submitChoice id=submitChoice class=btn>Submit</button>' +
         '</form>' +
         '<ul id=myChoices></ul>' +
         '</div>'
