@@ -15,7 +15,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.1.2/handlebars.min.js"></script>
-
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -52,14 +52,58 @@
             {{/each}}
           </ul>
 
-
     </script>
+
+    <div id="loginModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3>Welcome Aboard</h3>
+                </div>
+                <form class="loginform" method="POST">
+                    <div class="modal-body">
+                        <div class="center-container">
+                           <div class="input-prepend">
+                                <span class="add-on"><i class="glyphicon glyphicon-user"></i></span>
+                                <input id="userName" type="text" name="userName" placeholder="user name">
+                            </div>
+                        </div>
+                        <div class="center-container">
+                           <div class="input-prepend">
+                                <span class="add-on"><i class="glyphicon glyphicon-user"></i></span>
+                                <input id="firstName" type="text" name="firstName" placeholder="first name">
+                            </div>
+                        </div>
+                        <div class="center-container">
+                           <div class="input-prepend">
+                                <span class="add-on"><i class="glyphicon glyphicon-user"></i></span>
+                                <input id="lastName" type="text" name="lastName" placeholder="last name">
+                            </div>
+                        </div>
+                        <div class="center-container">
+                            <div class="input-prepend">
+                                <span class="add-on"><i class="glyphicon glyphicon-envelope"></i></span>
+                                <input id="email" type="text" name="email" placeholder="Email">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button id="login-user" type="submit" data-dismiss="modal" class="btn btn-primary signupButton"><i class="icon-ok icon-white"></i>Submit</button>
+                        <button id="delete-user" type="submit" class="btn btn-primary signupButton"><i class="icon-ok icon-white"></i>Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div><!-- /#myModal -->
 
     <header class="container">
         <nav class="navbar navbar-fixed-top container" role="navigation">
             <div class="navbar-header">
                 <a class="navbar-brand">NFZ</a>
-                <p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">Compassionate Person</a></p>
+                <!--<p class="navbar-text navbar-right">Signed in as <a href="#" class="navbar-link">Compassionate Person</a></p>-->
+                <p class="navbar-text navbar-right">Signed in as <a href="#" id="usernamelink" class="navbar-link">guest</a></p>
 
             </div>
             <div class="well clear">temperature scale goes here</div>
@@ -68,8 +112,8 @@
 
     <section id="chat" class="container">
         <form>
-            <label for="filename">File Name</label>
-            <input type="text" name="filename" value="None">
+            <label id="label-filename" for="filename">File Name</label>
+            <input id="input-filename" type="text" name="filename" value="None">
             <br/>
             <textarea name="content" rows="15" cols="80"></textarea>
             <br/>
@@ -248,12 +292,15 @@
 
 
 
-
-
-
     <script>
-            var dmp = new diff_match_patch();
+        var user = "{{person}}";
+        console.log("user=" + user.userName);
+        $('#loginModal').modal('show');
+        $('label#label-filename').hide();
+        $('input#input-filename').hide();
 
+
+            var dmp = new diff_match_patch();
             /*
              * Used the diff_match_patch library to generate a patch file for
              * to blocks of text.
@@ -294,7 +341,8 @@
             }
 
             function getFileName() {
-                return $("[name='filename']").val();
+                //return $("[name='filename']").val();
+                return "Chat";
             }
 
 
@@ -308,6 +356,13 @@
 
             function clearUserSpeech(){
               $("[name='userchat']").val("");
+            }
+
+            function clearUserInfo(){
+              $('#userName').val(""),
+              $('#firstName').val(""),
+              $('#lastName').val(""),
+              $('#email').val("");
             }
 
 
@@ -326,19 +381,26 @@
                 return v.toString(16);
             });
 
+            var user = $('a#usernamelink').html();
+
 
             /*
              * Event handler for the save button
              */
             $("[name='userchat']").keypress(function(event) {
                 //var clientText = $("[name='content']").val(),
+
                 if (event.which != 13)
                   return;
+
+                if (user == "guest")
+                    return;
+
 
                 var fileName = getFileName(),
                     textContent = getTextContent();
                 var userSpeech = getUserSpeech();
-                var userText = "\n" + client_guid + " :" + "\n" + userSpeech;
+                var userText = "\n" + user + " :" + "\n" + userSpeech;
                 textContent += userText;
                 console.log("test");
                 console.log(textContent);
@@ -351,6 +413,7 @@
 
                 // update the URL without posting
                 history.pushState({name: fileName}, fileName, fileName);
+                //history.pushState({name: user}, user, user);
                 $("[name='content']").val(textContent);
                 serverText = textContent;
                 clearUserSpeech();
@@ -375,11 +438,14 @@
             });
 
             $("[name='sendcards']").on("click", function(){
+                if (user == "guest")
+                    return;
+
                 var fileName = getFileName();
                 var textContent = getTextContent();
                 var fields = $( "#cards-container :input" ).serializeArray();
                 var inputObject = {cards: fields};
-                var userText = "\n" + client_guid + " sent cards:" + "\n";
+                var userText = "\n" + user + " sent cards:" + "\n";
                 var userCardText = "";
                 for (var i=0; i<inputObject.cards.length; i++){
                     if (inputObject.cards[i].name == "choice"){
@@ -422,9 +488,52 @@
                 //serverText = newText;
             });
 
+            $('button#login-user').on('click', function(event){
+                event.preventDefault();
+                console.log("you suck!");
+                var fileName = getFileName();
+                /*jQuery.post('/', {
+                    userName: $('#userName').val(),
+                    firstName: $('#firstName').val(),
+                    lastName: $('#lastName').val(),
+                    email: $('#email').val()
+                }, function(data, textStatus, jqXHR) {
+                    console.log("Post response:"); console.dir(data); console.log(textStatus); console.dir(jqXHR);
+                });*/
+                var userName = $('#userName').val(),
+                    firstName = $('#firstName').val(),
+                    lastName = $('#lastName').val(),
+                    email = $('#email').val();
+                serverSocket.emit("login", {userName: userName, firstName: firstName, lastName: lastName, email: email});
+                history.pushState({name: fileName}, fileName, fileName);
+            });
+
+            serverSocket.on("login", function(data){
+                //$('#loginModal').modal('hide');
+                //console.log(data.userName);
+                $('a#usernamelink').html(data.userName);
+                user = $('a#usernamelink').html();
+                console.log("login data=" );
+                console.dir(data);
+
+            });
+
+            $('button#delete-user').on('click', function(event){
+                console.log("delete user!");
+                var fileName = getFileName();
+
+                var userName = $('#userName').val(),
+                    firstName = $('#firstName').val(),
+                    lastName = $('#lastName').val(),
+                    email = $('#email').val();
+                serverSocket.emit("delete", {userName: userName, firstName: firstName, lastName: lastName, email: email});
+                clearUserInfo();
+                history.pushState({name: fileName}, fileName, fileName);
+            });
+
 
             function showValues() {
-                var fields = $( ":input" ).serializeArray();
+                var fields = $( "#cards-container :input" ).serializeArray();
                 var nfzObject = {cards: fields};
                 console.dir(nfzObject);
             //    $('#cardsObject').html( print(nfzObject) );
@@ -448,7 +557,7 @@
                 //  $( "select" ).change( showValues );
             }
 
-            $( "input[type='submit'], button[type='submit']" ).click(  showValues );
+            $( "button[name='sendcards']" ).click(  showValues );
 
           //showValues();
 
@@ -461,7 +570,7 @@
 
 
     <script src="bower_components/jquery/jquery.min.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
     <script src="bower_components/underscore/underscore-min.js"></script>
     <script src="bower_components/backbone/backbone-min.js"></script>
     <script src="bower_components/handlebars/handlebars.min.js"></script>

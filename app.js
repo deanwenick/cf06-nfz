@@ -124,7 +124,7 @@ expressApp.get('/', function(req, res){
 	console.log(b.card_data);
 });
 
-expressApp.post('/', function(req, res){
+/*expressApp.post('/', function(req, res){
 	console.log("POST: ");
 	console.log(req.body);
 	var person = new a.Person({
@@ -142,8 +142,8 @@ expressApp.post('/', function(req, res){
 			return console.log(err);
 		}
 	});
-	return res.send(person);
-});
+	res.redirect("/chat", {username: person.userName});
+});*/
 
 expressApp.put('/', function(req, res){
 
@@ -183,6 +183,53 @@ var httpServer = http.createServer(expressApp),
         fileContent[fileData.name] = applyPatch(fileData.patch, fileContent[fileData.name]);
         clientSocket.broadcast.emit("sendCards", fileData);
         //console.log(arguments);
+
+        });
+    });
+
+    ioServer.on("connection", function(clientSocket){
+        clientSocket.on("login", function(Data){
+        //fileContent[fileData.name] = applyPatch(fileData.patch, fileContent[fileData.name]);
+            console.log("server received login" + Data);
+            console.dir(Data);
+            var person = new a.Person({
+             userName: Data.userName,
+                firstName: Data.firstName,
+                lastName: Data.lastName,
+                email: Data.email,
+            });
+            console.log(person);
+            person.save(function(err){
+                if (!err) {
+                    return console.log("created");
+                }
+                else {
+                    return console.log(err);
+                }
+            });
+            clientSocket.emit("login", Data);
+        //console.log(arguments);
+
+        });
+    });
+
+    ioServer.on("connection", function(clientSocket){
+        clientSocket.on("delete", function(Data){
+        //fileContent[fileData.name] = applyPatch(fileData.patch, fileContent[fileData.name]);
+            console.log("server received delete");
+            console.dir(Data);
+            a.Person.findOne({userName: Data.userName}, function(err, person) {
+                person.remove(function(err) {
+                    if (!err) {
+                        console.log("removed");
+                        //return res.send('');
+                    }
+                    else {
+                        console.log(err);
+                    }
+                })
+            });
+            //clientSocket.emit("login", Data);
 
         });
     });
