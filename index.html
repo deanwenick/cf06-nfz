@@ -448,7 +448,10 @@
                 //serverText = newText;
             });
 
-            $("[name='sendcards']").on("click", function(){
+
+            
+            //this function not used
+/*            $("[name='sendcards']").on("click", function(){
                 if (user == "guest")
                     return;
 
@@ -479,9 +482,9 @@
                 $("[name='content']").val(textContent);
                 serverText = textContent;
 
-            });
+            });*/
 
-            serverSocket.on("sendCards", function(fileData){
+ /*           serverSocket.on("sendCards", function(fileData){
                 //var clientText = $("[name='content']").val(),
                     //patch = generatePatch(serverText, clientText);
                 //socket.emit("save", {p: patch});
@@ -498,7 +501,7 @@
                 //$("[name='content']").val(newText);
                 //serverText = newText;
             });
-
+*/
             $('button#login-user').on('click', function(event){
                 event.preventDefault();
                 console.log("you suck!");

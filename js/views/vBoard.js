@@ -7,7 +7,7 @@ APP.BoardView = Backbone.View.extend ({
     el: "#guts",
 
     template: function(){
-        var board = "";
+        var board = "<div id=myBoard class=container>";
         board += "<h3>Your Observations:</h3><ul>";
         $.each(APP.NFZ.observations, function(i,val) {
             board += "<li>" + val.label + "</li>";
@@ -36,7 +36,7 @@ APP.BoardView = Backbone.View.extend ({
         $.each(APP.NFZ.requests, function(i,val) {
             board += "<li>" + val.label + "</li>";
         });
-        board += "</ul>";
+        board += "</ul></div>";
         return board;
     },
     /*

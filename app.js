@@ -1,4 +1,4 @@
-//app.js
+
 //this is our server side code
 //node.js app uses express server
 var path = require("path"),
